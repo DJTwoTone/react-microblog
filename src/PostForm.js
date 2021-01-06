@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-function PostForm() {
+function PostForm({post, save, cancel}) {
 
     const [postData, setPostData] = useState({
         title: post.title,
@@ -18,7 +18,7 @@ function PostForm() {
 
     function handleSubmit(evt) {
         evt.preventDefault();
-        //save(postData)
+        // save(postData)
     }
 
     return (
@@ -60,6 +60,7 @@ function PostForm() {
             </div>
 
             <button className="btn btn-primary">SAVE</button>
+            {/* <button onClick={cancel} className="btn btn-secondary">CANCEL</button> */}
             
 
         </form>
