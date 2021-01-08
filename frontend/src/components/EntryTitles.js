@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchTitlesFromAPI } from '../actions/titles';
+import { Link } from 'react-router-dom';
+import { sendVoteToAPI } from "../actions/posts"
 
 
 function EntryTitles() {
@@ -27,6 +29,10 @@ function EntryTitles() {
         return <b>Please add a post.</b>;
     }
 
+    function vote(id, voteType) {
+        dispatch(sendVoteToAPI(id, voteType))
+    }
+
     return (
         <div className="EntryTitles">
             <div className="row">
@@ -39,6 +45,13 @@ function EntryTitles() {
                             <div className='card-text'>
                                 <p>{title.description}</p>
                             </div>
+                        </div>
+                        <div className="card-footer">
+                            <p>{title.votes} votes</p>
+                            <i className="fas fa-thumbs-up text-sucess" 
+                                onClick={evt => vote(title.id, "up")} />
+                            <i className="fas fa-thumbs-down text-danger" 
+                                onClick={evt => vote(title.id, "down")} />
                         </div>
                     </div>
                 ))}

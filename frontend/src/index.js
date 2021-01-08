@@ -9,9 +9,14 @@ import "@fortawesome/fontawesome-free/css/all.css";
 import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 import rootReducer from './reducers';
+import thunk from 'redux-thunk';
+import { composeWithDevTools } from 'redux-devtools-extension';
 
 const store = createStore(
-  rootReducer
+  rootReducer,
+  composeWithDevTools(
+    applyMiddleware(thunk);
+  )
 )
 
 ReactDOM.render(
