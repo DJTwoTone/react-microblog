@@ -4,15 +4,17 @@ import {
     DEL_POST,
     UPDATE_POST,
     ADD_COMMENT,
-    DEL_COMMENT
+    DEL_COMMENT,
+    VOTE
 } from '../actions/types'
 
-export default function rootReduser(state={}, action) {
+export default function rootReducer(state={}, action) {
     let p = state[action.postId];
 
     switch (action.type) {
 
         case FETCH_POST:
+            console.log('from the reducer', "action---", action, "state----", state)
             return { 
                 ...state, 
                 [action.post.id]: action.post
@@ -21,7 +23,7 @@ export default function rootReduser(state={}, action) {
         case ADD_POST:
             return { 
                 ...state,
-                [action.post.id]: {action.post, comments: [] }
+                [action.post.id]: { ...action.post, comments: [] }
             };
 
         case UPDATE_POST:
@@ -48,6 +50,12 @@ export default function rootReduser(state={}, action) {
             return {
                 ...state,
                 [action.postId]: { ...p, comments: p.comments.filter(c => c.id !== action.commentId)}
+            };
+
+        case VOTE:
+            return {
+                ...state,
+                [action.postId]: { ...p, votes: action.votes}
             };
 
         default:

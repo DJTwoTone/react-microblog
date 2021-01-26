@@ -9,20 +9,23 @@ import {
     VOTE
 } from "./types";
 
-const API_URL = process.env.REACT_APP_API_URL || "https://localhost:5000/api/posts";
+const API_URL = process.env.REACT_APP_API_URL || "http://localhost:5000/api/posts";
 
 export function getPostFromAPI(id) {
+
+    console.log('api call post id ---- ', id)
     return async function(dispatch) {
-        const res = await axios.get(`${API_URL}/{id}`);
-        return dispatch(getPost(res.data);)
+        const res = await axios.get(`${API_URL}/${id}`);
+        return dispatch(getPost(res.data));
     };
 }
 
 function getPost(post) {
+    console.log('action post data ---', post)
     return {
         type: FETCH_POST,
         post
-    }
+    };
 }
 
 export function sendPostToAPI(title, description, body) {
@@ -59,7 +62,7 @@ function delPost(postId) {
 
 export function updatePostInAPI(id, title, description, body) {
     return async function (dispatch) {
-        const res = axios.put(`${API_URL}/{id}`, {
+        const res = axios.put(`${API_URL}/${id}`, {
             title, 
             description,
             body

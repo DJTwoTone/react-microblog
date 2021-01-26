@@ -23,6 +23,7 @@ function EntryTitles() {
         }
     }, [dispatch, isLoading]);
 
+
     if (isLoading) return <b>Loading...</b>
 
     if (!isLoading && titles.length === 0) {
@@ -32,6 +33,7 @@ function EntryTitles() {
     function vote(id, voteType) {
         dispatch(sendVoteToAPI(id, voteType))
     }
+
 
     return (
         <div className="EntryTitles">

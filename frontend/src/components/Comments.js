@@ -10,8 +10,8 @@ function Comments({comments=[], delComment}) {
                 text={c.text}
                 delComment={delComment}
             />
-        ));
-    );
+        ))
+    )
 };
 
 export default Comments;

@@ -26,3 +26,5 @@ function PostDisplay({post, toggleEdit, delPost}) {
     )
 
 }
+
+export default PostDisplay;

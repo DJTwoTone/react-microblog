@@ -18,7 +18,7 @@ function PostForm({post, save, cancel}) {
 
     function handleSubmit(evt) {
         evt.preventDefault();
-        // save(postData)
+        save(postData)
     }
 
     return (
@@ -65,6 +65,10 @@ function PostForm({post, save, cancel}) {
 
         </form>
     )
+}
+
+PostForm.defaultProps = {
+    post: { title: "", description: "", body: "" }
 }
 
 export default PostForm;
